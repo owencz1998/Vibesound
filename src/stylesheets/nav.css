@@ -21,7 +21,7 @@ nav a.active {
 @media (orientation: portrait) {
   nav {
     position: fixed;
-    bottom: 0;
+    bottom: 2;
     left: 0;
     display: flex;
     height: auto;
