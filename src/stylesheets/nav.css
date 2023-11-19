@@ -23,7 +23,7 @@ nav a.active {
 
   nav {
     display: fixed;
-    height: 50%;
+    height: 20%;
     justify-content: space-around;
     width: 94%;
     padding: 5% 3%;
