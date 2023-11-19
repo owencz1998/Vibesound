@@ -23,6 +23,7 @@ nav a.active {
 
   nav {
     position: fixed;
+    bottom: 0;
     flex-direction: column;
     height: 100%;
     justify-content: flex-end;
