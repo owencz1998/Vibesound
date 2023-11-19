@@ -23,7 +23,7 @@ nav a.active {
 
   nav {
     display: flex;
-    height: 1000%;
+    height: 100dvh;
     justify-content: space-around;
     width: 94%;
     padding: 5% 3%;
