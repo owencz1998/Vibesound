@@ -49,11 +49,14 @@ nav a.active {
 
 @media (orientation: landscape) {
   nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
     height: 100vh;
     flex-direction: column;
     width: 20%;
     font-size: large;
-    justify-content: center;
+    justify-content: flex-end;
   }
 
   nav a {
