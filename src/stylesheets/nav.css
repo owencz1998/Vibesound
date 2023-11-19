@@ -1,5 +1,5 @@
 nav {
-  display: flex;
+  display: fixed;
 }
 
 nav a {
@@ -22,7 +22,8 @@ nav a.active {
 @media(orientation:portrait) {
 
   nav {
-    height: auto;
+    display: fixed;
+    height: 50%;
     justify-content: space-around;
     width: 94%;
     padding: 5% 3%;
