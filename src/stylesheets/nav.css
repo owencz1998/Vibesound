@@ -1,70 +1,72 @@
-<nav>
-  position: fixed;
-</nav>
+nav {
+  display: flex;
+}
 
-<nav a>
+nav a {
   text-decoration: none;
   color: inherit;
-  opacity: 0.5;
-</nav>
+  display: flex;
+  align-items: center;
+  opacity: 50%;
+}
 
-<nav a:hover>
-  opacity: 0.75;
-</nav>
 
-<nav a.active>
+nav a:hover {
+  opacity: 75%;
+}
+
+nav a.active {
   opacity: 1;
-</nav>
+}
 
-@media (orientation: portrait) {
-  <nav>
-    position: fixed;
-    bottom: 0;
-    flex-direction: column;
-    height: 100%;
-    justify-content: space-between;
+@media(orientation:portrait) {
+
+  nav {
+    height: auto;
+    justify-content: space-around;
     width: 94%;
     padding: 5% 3%;
     padding-bottom: 0;
-  </nav>
+  }
 
-  <nav a>
-    display: block;
-    align-items: flex-start;
+
+  nav a {
+    height: 100%;
+    flex-direction: column;
     justify-content: space-evenly;
-  </nav>
+  }
 
-  <nav i>
+  nav i {
     font-size: larger;
-  </nav>
+  }
 
-  <nav p>
+  nav p {
     margin: 0;
     padding: 0;
     font-size: small;
-  </nav>
+  }
+
 }
 
-@media (orientation: landscape) {
-  <nav>
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    height: 100vh;
+@media(orientation:landscape) {
+
+  nav {
+    height: 100dvh;
     flex-direction: column;
     width: 20%;
-    justify-content: flex-end;
-  </nav>
+    font-size: large;
+    justify-content: center;
+  }
 
-  <nav a>
+
+  nav a {
     width: auto;
     height: 12%;
-    margin: 1vh;
-    align-items: flex-start;
-    justify-content: space-between;
-  </nav>
+    margin: 1dvh;
+  }
 
-  <nav i>
+  nav i {
     margin: 0 1vw;
-  </nav>
+  }
+
 }
