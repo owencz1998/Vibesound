@@ -22,9 +22,9 @@ nav a.active {
 @media(orientation:portrait) {
 
   nav {
-    display: bottom;
+    flex-direction: column;
     height: 100%;
-    justify-content: space-around;
+    justify-content: flex-end;
     width: 94%;
     padding: 5% 3%;
     padding-bottom: 0;
