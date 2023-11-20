@@ -2,7 +2,7 @@
   height: auto;
   width: calc(100% - 8.3vmin);
   padding: 2.4vmin 4vmin;
-  margin-bottom: 2vmin;
+  margin-bottom:2vmin;
   position: sticky;
   z-index: 1;
   top: 0;
@@ -79,18 +79,3 @@
   color: var(--bg);
 }
 
-
-#sort {
-  height: 9vmin;
-  display: flex;
-  justify-content: space-around;
-  position: sticky;
-  top: calc(100% - 12vmin);
-  z-index: 3;
-  background-color: var(--onBg);
-  padding: 0 1.5vmin;
-  border: var(--border);
-  border-radius: calc(var(--roundness) + 0.5vmin);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(2vmin);
-}

@@ -5,7 +5,6 @@ import { $, getSaved, save, itemsLoader, idFromURL, params, loadMoreResults } fr
 
 const searchlist = <HTMLDivElement>document.getElementById('searchlist');
 const searchFilters = <HTMLSelectElement>document.getElementById('searchFilters');
-const sortSwitch = <HTMLElement>document.getElementById('sortByTime');
 
 let nextPageToken = '';
 
@@ -43,31 +42,16 @@ const searchLoader = () => {
       let items = searchResults.items;
       nextPageToken = searchResults.nextpage;
 
-      if (sortSwitch.hasAttribute('checked')) {
-        for (let i = 0; i < 3; i++) {
-          const data = await loadMoreResults(query + '&', nextPageToken);
-          nextPageToken = data.nextpage;
-          items = items.concat(data.items);
-        }
-
-        items.sort((
-          a: { uploaded: number },
-          b: { uploaded: number }
-        ) => b.uploaded - a.uploaded);
-      }
-
-      // filter livestreams & shorts & append rest
-
       searchlist.appendChild(
         itemsLoader(
-          items.filter((item: StreamItem) => !item.isShort && item.duration !== -1)
+          items
         )
       );
       // load more results when 3rd last element is visible
       setObserver(async () => {
         const data = await loadMoreResults(query + '&', nextPageToken);
         searchlist.appendChild(itemsLoader(
-          data.items.filter((item: StreamItem) => !item.isShort && item.duration !== -1)
+          data.items
         ));
         return data.nextpage;
       });
@@ -85,9 +69,6 @@ const searchLoader = () => {
   history.replaceState({}, '', location.origin + location.pathname + superInput.dataset.query.replace('filter', 'f'));
   suggestions.style.display = 'none';
 }
-
-
-sortSwitch.addEventListener('click', searchLoader);
 
 
 // super input supports both searching and direct link, also loads suggestions

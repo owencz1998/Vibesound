@@ -19,11 +19,11 @@ import { registerSW } from 'virtual:pwa-register';
 
 const update = registerSW({
   async onNeedRefresh() {
-    const data = await fetch('https://api.github.com/repos/n-ce/ytify/commits/6.5').then(_ => _.json());
+    const data = await fetch('https://api.github.com/repos/owencz1998/vibesound/commits/6.5').then(_ => _.json());
     const displayer = <HTMLDialogElement>document.getElementById('changelog');
     const [updateBtn, laterBtn] = <HTMLCollectionOf<HTMLButtonElement>>displayer.lastElementChild?.children;
     displayer.children[1].textContent = data.commit.message;
-    const commits = await fetch('https://api.github.com/repos/n-ce/ytify/commits')
+    const commits = await fetch('https://api.github.com/repos/owencz1998/vibesound/commits')
       .then(_ => _.json());
 
     commits.map((e: { commit: string }) => e.commit).map((e: { committer: { date: string }, message: string }) => e.committer.date + ' : ' + e.message).forEach((e: string) => {
