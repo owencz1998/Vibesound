@@ -2,6 +2,7 @@
   height: auto;
   width: calc(100% - 8.3vmin);
   padding: 2.4vmin 4vmin;
+  margin-bottom:2vmin;
   position: sticky;
   z-index: 1;
   top: 0;
