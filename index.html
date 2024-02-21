@@ -14,14 +14,14 @@
     content="ytify,yify, Ytify, Youtube, youtube, Music,music, audio,opus, 32kbps,64kbps,Free ,spotify ,streaming, music-player ,  youtube-player , free-music, ytmusic">
 
   <!-- social media preview, more info https://ogp.me -->
-  <meta property="og:title" content="ytify">
+  <meta property="og:title" content="vibesound">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://ytify.netlify.app">
+  <meta property="og:url" content="https://vibesounds.netlify.app/">
   <meta property="og:description" content="32-128kbps Opus YouTube Audio Streaming Web App.">
   <meta property="og:image" content="/ytify_thumbnail_min.webp">
 
   <!-- tells google that this url is most important (e.g. not http (without s = secure))-->
-  <link rel="canonical" href="https://ytify.netlify.app/">
+  <link rel="canonical" href="https://vibesounds.netlify.app/">
 
   <link rel="icon" type="image/svg+xml" href="/logo.svg" />
   <link rel="icon" type="image/png" href="/logo192.png" sizes="192x192" />
@@ -29,7 +29,7 @@
   <link rel="apple-touch-icon" href="/logo192.png">
 
 
-  <title>ytify</title>
+  <title>vibesound</title>
 </head>
 
 <body>
@@ -40,7 +40,7 @@
       <i class="ri-home-line"></i>
       <p>Home</p>
     </a>
-    <a href="/upcoming" id="/upcoming">
+    <a href="/upcoming" id="upcoming">
       <i class="ri-skip-forward-line"></i>
       <p>Upcoming</p>
     </a>
@@ -66,7 +66,7 @@
         alt="Current Playing Media Thumbnail">
 
       <div id="metadata">
-        <a id="title" href="" target="_blank">ytify 6.8</a>
+        <a id="title" href="" target="_blank">vibesound 6.8</a>
         <a id="author" href="" target="_blank">Channel</a>
         <select id="bitrateSelector">
           <option>Bitrate</option>
@@ -99,18 +99,18 @@
       <span id="superInputContainer">
         <input type="search" id="superInput" autocomplete="off" placeholder='Search or enter YT URL' />
         <select id="searchFilters">
-          <optgroup label="YouTube">
+        <optgroup label="YouTube Music">
+            <option value="music_songs">Songs</option>
+            <option value="music_videos">Videos</option>
+            <option value="music_albums">Albums</option>
+            <option value="music_playlists">Playlists</option>
+          </optgroup>
+            <optgroup label="YouTube">
             <option value="all">All</option>
             <option value="all">By Time</option>
             <option value="videos">Videos</option>
             <option value="channels">Channels</option>
             <option value="playlists">Playlists</option>
-          </optgroup>
-          <optgroup label="YouTube Music">
-            <option value="music_songs">Songs</option>
-            <option value="music_videos">Videos</option>
-            <option value="music_albums">Albums</option>
-            <option value="music_playlists">Playlists</option>
           </optgroup>
         </select>
         <button aria-label="search" class="ri-search-2-line"></button>
@@ -217,7 +217,7 @@
         <label for="linkOrigin">Domain for links</label>
         <select id="linkOrigin">
           <option value="https://youtube.com">YouTube</option>
-          <option value="https://ytify.netlify.app">ytify</option>
+          <option value="https://vibesounds.netlify.app/">vibesound</option>
           <option value="https://piped.video">Piped</option>
         </select>
       </span>
@@ -290,11 +290,11 @@
 
       <button id="restoreSettingsBtn">Restore Settings</button>
 
-      <a href="https://github.com/n-ce/ytify/wiki/troubleshooting" target="_blank">Help</a>
+      <a href="https://github.com/owencz1998/Vibesound/wiki/troubleshooting" target="_blank">Help</a>
 
-      <a href="https://github.com/n-ce/ytify/wiki/changelog" target="_blank">Changelog</a>
+      <a href="https://github.com/owencz1998/Vibesound/wiki/changelog" target="_blank">Changelog</a>
 
-      <a href="https://github.com/n-ce/ytify/" target="_blank">Github</a>
+      <a href="https://github.com/owencz1998/Vibesound" target="_blank">Github</a>
 
       <a href="https://t.me/ytifytg" target="_blank">Telegram</a>
 
