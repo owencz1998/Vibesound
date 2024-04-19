@@ -23,9 +23,15 @@ export const getCollection = (name: string) => <HTMLDivElement>(<HTMLDetailsElem
 
 export const idFromURL = (link: string | null) => link?.match(/(https?:\/\/)?((www\.)?(youtube(-nocookie)?|youtube.googleapis)\.com.*(v\/|v=|vi=|vi\/|e\/|embed\/|user\/.*\/u\/\d+\/)|youtu\.be\/)([_0-9a-z-]+)/i)?.[7];
 
-export const imgUrl = (id: string, res: string, proxy: string = thumbnailProxies.value) => `${proxy}/vi_webp/${id}/${res}.webp?host=i.ytimg.com`;
-
 export const numFormatter = (num: number): string => Intl.NumberFormat('en', { notation: 'compact' }).format(num);
+
+export const generateImageUrl = (
+  id: string,
+  res: string = 'mqdefault',
+  proxy: string = thumbnailProxies.value
+) => proxy + (id.startsWith('/') ?
+  `${id}=s176-c-k-c0x00ffffff-no-rj?host=yt3.googleusercontent.com` :
+  `/vi_webp/${id}/${res}.webp?host=i.ytimg.com`);
 
 export function notify(text: string) {
   const el = $('p');
@@ -37,18 +43,19 @@ export function notify(text: string) {
   document.body.appendChild(el);
 }
 
-const linkDomain = (<HTMLSelectElement>document.getElementById('linkOrigin'));
-const savedLinkDomain = getSaved('linkDomain');
-if (savedLinkDomain) linkDomain.value = savedLinkDomain;
+const linkHost = (<HTMLSelectElement>document.getElementById('linkHost'));
+const savedLinkHost = getSaved('linkHost');
+if (savedLinkHost)
+  linkHost.value = savedLinkHost;
 
-linkDomain.addEventListener('change', () => {
-  linkDomain.selectedIndex === 0 ?
-    removeSaved('linkDomain') :
-    save('linkDomain', linkDomain.value);
+linkHost.addEventListener('change', () => {
+  linkHost.selectedIndex === 0 ?
+    removeSaved('linkHost') :
+    save('linkHost', linkHost.value);
 });
 
-export const domainResolver = (url: string) =>
-  linkDomain.value + (linkDomain.value.includes('ytify') ? url.
+export const hostResolver = (url: string) =>
+  linkHost.value + (linkHost.value.includes('ytify') ? url.
     startsWith('/watch') ?
     ('?s' + url.slice(8)) :
     ('/list?' + url.slice(1).split('/').join('=')) : url);
@@ -94,14 +101,14 @@ export function setMetaData(
   authorUrl: string,
   music: boolean = false
 ) {
-  const imgX = imgUrl(id, 'maxresdefault');
+  const imgX = generateImageUrl(id, 'maxresdefault');
   if (!getSaved('img') && !music)
     img.src = imgX;
 
   img.alt = streamName;
 
   const title = <HTMLAnchorElement>document.getElementById('title');
-  title.href = `https://youtube.com/watch?v=${id}`;
+  title.href = hostResolver(`/watch?v=${id}`);
   title.textContent = streamName;
   title.onclick = _ => {
     _.preventDefault();
@@ -248,28 +255,40 @@ export function itemsLoader(itemsArray: StreamItem[]) {
       data-channel_url=${stream.uploaderUrl}
   />`;
 
-  function rmDomain(url: string) {
-    if (!url) return;
-    if (!url.startsWith('https')) return url;
-    const l = new URL(url.replace(/&qhash=.{8}$/, ''));
-    return l.pathname + l.search;
+  function getThumbIdFromLink(url: string) {
+    // for featured playlists
+    if (url.startsWith('/')) return url;
+
+    const l = new URL(url);
+    const p = l.pathname;
+
+    return l.search.includes('ytimg') ?
+      p.split('/')[2] :
+      p.split('=')[0];
   }
 
   const listItem = (item: StreamItem) => html`<list-item
       title=${item.name}
-      thumbnail=${rmDomain(item.thumbnail)}
-      uploader_data=${item.description || item.uploaderName}
-      stats=${item.subscribers > 0 ?
+      thumbnail=${!getSaved('img') && item.thumbnail ?
+      generateImageUrl(
+        getThumbIdFromLink(
+          item.thumbnail
+        )
+      ) : blankImage
+    }
+    uploader_data = ${item.description || item.uploaderName}
+    stats = ${item.subscribers > 0 ?
       (numFormatter(item.subscribers) + ' subscribers') :
-      (item.videos > 0 ? item.videos + ' streams' : '')}
-      type=${item.type}
-      url=${item.url}
-  />`;
+      (item.videos > 0 ? item.videos + ' streams' : '')
+    }
+    type = ${item.type}
+    url = ${item.url}
+    />`;
 
   const fragment = document.createDocumentFragment();
 
   render(html`${itemsArray.map(item =>
-    html`<a href=${domainResolver(item.url)}>
+    html`<a href=${hostResolver(item.url)}>
     ${item.type !== 'stream' ?
         listItem(item) :
         streamItem(item)}
